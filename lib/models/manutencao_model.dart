@@ -5,6 +5,7 @@ class ManutencaoModel {
   final String veiculo; // Modelo do carro/moto (ex: Chevrolet Corsa 1.6)
   final String placa; // Placa do veículo (ex: ABC-1D23)
   final String servico; // Descrição do serviço realizado
+  final String mecanico; // Mecânico responsável pela ordem de serviço
   final double valor; // Valor do orçamento/serviço
   final String status; // 'Pendente', 'Em Andamento' ou 'Concluído'
 
@@ -14,6 +15,7 @@ class ManutencaoModel {
     required this.veiculo,
     required this.placa,
     required this.servico,
+    required this.mecanico,
     required this.valor,
     required this.status,
   });
@@ -26,6 +28,7 @@ class ManutencaoModel {
       veiculo: map['veiculo'] as String,
       placa: map['placa'] as String,
       servico: map['servico'] as String,
+      mecanico: (map['mecanico'] as String?) ?? '',
       valor: (map['valor'] as num).toDouble(),
       status: map['status'] as String,
     );
@@ -38,6 +41,7 @@ class ManutencaoModel {
       'veiculo': veiculo,
       'placa': placa.toUpperCase(),
       'servico': servico,
+      'mecanico': mecanico,
       'valor': valor,
       'status': status,
     };

@@ -20,7 +20,7 @@ O **AutoGestor** e um sistema voltado para oficinas mecanicas automotivas que re
 - **Tratamento de Erros:** Traducao automatica de erros do servidor para mensagens claras em portugues (credenciais invalidas, e-mail ja cadastrado, senha curta ou formato de e-mail invalido).
 
 ### CRUD Completo de Ordens de Servico
-- **Criar (Create):** Formulario dedicado para registrar novas manutencoes contendo modelo do veiculo, placa, descricao do servico/pecas, valor do orcamento e status inicial.
+- **Criar (Create):** Formulario dedicado para registrar novas manutencoes contendo modelo do veiculo, placa, descricao do servico/pecas, mecanico responsavel, valor do orcamento e status inicial.
 - **Ler (Read):** Listagem atualizada das ordens de servico cadastradas pelo usuario logado, acompanhada de um painel superior que calcula automaticamente o total de veiculos atendidos e a soma financeira dos orcamentos.
 - **Atualizar (Update):** Edicao completa de qualquer ordem de servico existente e alteracao do status de andamento (*Pendente*, *Em Andamento* ou *Concluido*) com identificacao visual por cores.
 - **Deletar (Delete):** Exclusao de registros mediante confirmacao em caixa de dialogo (`AlertDialog`) para prevenir remocoes acidentais.
@@ -80,6 +80,7 @@ Os dados sao armazenados na tabela relacional `public.manutencoes` no PostgreSQL
 | `veiculo` | `text` | Sim | Marca e modelo do veiculo em manutencao |
 | `placa` | `text` | Sim | Placa de identificacao do veiculo |
 | `servico` | `text` | Sim | Descricao detalhada do servico ou pecas substituidas |
+| `mecanico` | `text` | Sim | Nome do mecanico responsavel pela Ordem de Servico |
 | `valor` | `numeric` | Sim | Valor orcado para a Ordem de Servico |
 | `status` | `text` | Sim | Situacao atual (`Pendente`, `Em Andamento` ou `Concluido`) |
 | `created_at` | `timestamptz` | Sim | Data e hora de criacao do registro |
@@ -107,6 +108,7 @@ create table public.manutencoes (
   veiculo text not null,
   placa text not null,
   servico text not null,
+  mecanico text not null default '',
   valor numeric not null,
   status text not null,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null

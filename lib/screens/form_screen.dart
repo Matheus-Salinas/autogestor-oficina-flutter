@@ -19,6 +19,7 @@ class _FormScreenState extends State<FormScreen> {
   final _veiculoController = TextEditingController();
   final _placaController = TextEditingController();
   final _servicoController = TextEditingController();
+  final _mecanicoController = TextEditingController();
   final _valorController = TextEditingController();
 
   String _statusSelecionado = 'Pendente';
@@ -37,6 +38,7 @@ class _FormScreenState extends State<FormScreen> {
       _veiculoController.text = item.veiculo;
       _placaController.text = item.placa;
       _servicoController.text = item.servico;
+      _mecanicoController.text = item.mecanico;
       _valorController.text = item.valor.toStringAsFixed(2);
       _statusSelecionado = item.status;
     }
@@ -62,6 +64,7 @@ class _FormScreenState extends State<FormScreen> {
         veiculo: _veiculoController.text.trim(),
         placa: _placaController.text.trim().toUpperCase(),
         servico: _servicoController.text.trim(),
+        mecanico: _mecanicoController.text.trim(),
         valor: valorNumerico,
         status: _statusSelecionado,
       );
@@ -92,6 +95,7 @@ class _FormScreenState extends State<FormScreen> {
     _veiculoController.dispose();
     _placaController.dispose();
     _servicoController.dispose();
+    _mecanicoController.dispose();
     _valorController.dispose();
     super.dispose();
   }
@@ -141,6 +145,16 @@ class _FormScreenState extends State<FormScreen> {
                     icon: Icons.handyman_outlined,
                     validator: (v) =>
                         (v == null || v.trim().isEmpty) ? 'Descreva o serviço' : null,
+                  ),
+
+                  CustomTextField(
+                    controller: _mecanicoController,
+                    label: 'Mecânico Responsável',
+                    hint: 'Ex: Carlos Silva',
+                    icon: Icons.engineering_outlined,
+                    validator: (v) => (v == null || v.trim().isEmpty)
+                        ? 'Informe o mecânico responsável'
+                        : null,
                   ),
 
                   CustomTextField(

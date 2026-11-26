@@ -106,6 +106,28 @@ class ManutencaoCard extends StatelessWidget {
               'Serviço: ${manutencao.servico}',
               style: TextStyle(fontSize: 15, color: Colors.grey.shade800),
             ),
+            const SizedBox(height: 6),
+
+            // Mecânico responsável
+            Row(
+              children: [
+                Icon(
+                  Icons.engineering_outlined,
+                  size: 16,
+                  color: Colors.blueGrey.shade600,
+                ),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    'Mecânico: ${manutencao.mecanico.isEmpty ? 'Não informado' : manutencao.mecanico}',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.blueGrey.shade700,
+                    ),
+                  ),
+                ),
+              ],
+            ),
             const Divider(height: 24),
 
             // Linha inferior: Valor formatado e Botões de Ação (Editar / Excluir)
